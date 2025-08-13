@@ -1,4 +1,12 @@
 logs/*
 log.txt
+
+[qawno/*]
+!qawno/include/
+
 gamemodes/*.amx
 filterscripts/*.amx
+
+components/*
+omp-server.exe
+omp-server.pdb
