@@ -441,8 +441,8 @@ stock D@(const function[], const fmat[], GLOBAL_TAG_TYPES:...)
 	return 0;
 }
 
-#define @@%0\32; @@
-#define _@%0\32; _@
+//#define @@%0\32; @@
+//#define _@%0\32; _@
 
 /*-------------------------------------------------------------------------*//**
  * <library>y_shortfunc</library>
