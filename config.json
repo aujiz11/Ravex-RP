@@ -49,6 +49,10 @@
         "vehicle_respawn_time": 10000,
         "weather": 10
     },
+    "crashdetect": {
+        "enabled_long_call_time": true,
+        "long_call_time": 1000000
+    },
     "language": "VIE",
     "logging": {
         "enable": true,
@@ -95,7 +99,9 @@
     },
     "password": "",
     "pawn": {
-        "legacy_plugins": ["mysql", "PawnPlus", "streamer"],
+        "legacy_plugins": [
+            "crashdetect", "mysql", "PawnPlus", 
+            "streamer",  "samp_bcrypt"],
         "main_scripts": [
             "main 1"
         ],
