@@ -1,0 +1,5 @@
+[8/13/2025 4:47:43 PM] [ERROR] mysql_connect_file: file "scriptfiles/mysql.ini" not in SA-MP root folder
+[8/13/2025 4:47:43 PM] [ERROR] mysql_errno: invalid connection handle '0'
+[8/13/2025 4:47:43 PM] [ERROR] mysql_errno: invalid connection handle '0'
+[8/13/2025 4:47:43 PM] [ERROR] mysql_close: invalid connection handle '0'
+[8/13/2025 4:49:08 PM] [WARNING] mysql_connect_file: no password specified
