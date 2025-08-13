@@ -27,8 +27,8 @@
         "gravity": 0.008,
         "group_player_objects": false,
         "lag_compensation_mode": 1,
-        "map": "",
-        "mode": "",
+        "map": "San Andreas",
+        "mode": "Freeroam",
         "nametag_draw_radius": 70.0,
         "player_marker_draw_radius": 250.0,
         "player_marker_mode": 1,
@@ -49,7 +49,7 @@
         "vehicle_respawn_time": 10000,
         "weather": 10
     },
-    "language": "",
+    "language": "VIE",
     "logging": {
         "enable": true,
         "file": "log.txt",
@@ -95,7 +95,7 @@
     },
     "password": "",
     "pawn": {
-        "legacy_plugins": [],
+        "legacy_plugins": ["mysql", "PawnPlus", "streamer"],
         "main_scripts": [
             "main 1"
         ],
