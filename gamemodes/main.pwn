@@ -20,12 +20,11 @@
 
 #include <YSI\YSI_Data\y_bit>
 
-#include "./modules/config/database"
-#include "./modules/config/plugins"
-#include "./modules/core/string_def"
-#include "./modules/core/func_def"
+#include "modules/config/database.inc"
+#include "modules/config/plugins.inc"
 
-#include "./modules/player/main"
+#include "modules/core/main.inc"
+#include "modules/player/main.inc"
 
 public OnGameModeInit()
 {

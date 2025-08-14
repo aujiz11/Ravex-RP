@@ -1,4 +1,9 @@
-#include "./modules/player/header"
-#include "./modules/player/utils"
+#if defined _player_main_inc
+    #endinput
+#endif
+#define _player_main_inc
 
-#include "./modules/player/auth/auth"
+#include "modules/player/header.inc"
+#include "modules/player/utils.inc"
+
+#include "modules/player/auth/auth.inc"
