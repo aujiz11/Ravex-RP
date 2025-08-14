@@ -12,6 +12,7 @@
 #include <PawnPlus>
 #include <samp_bcrypt>
 #include <crashdetect>
+#include <Pawn.CMD>
 
 #include <pp-dialog>
 #include <pp-mysql>
@@ -51,5 +52,21 @@ public OnPlayerConnect(playerid)
 
 public OnPlayerDisconnect(playerid, reason)
 {
+    return 1;
+}
+
+public OnPlayerCommandReceived(playerid, cmd[], params[], flags)
+{
+    return 1;
+}
+
+public OnPlayerCommandPerformed(playerid, cmd[], params[], result, flags)
+{
+    if (result == -1)
+    {
+        SendClientMessage(playerid, 0xFFFFFFFF, "SERVER: Unknown command.");
+
+        return 0;
+    }
     return 1;
 }

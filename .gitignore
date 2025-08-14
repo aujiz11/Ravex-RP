@@ -8,5 +8,6 @@ gamemodes/*.amx
 filterscripts/*.amx
 
 components/*
+!components/pawncmd.dll
 omp-server.exe
 omp-server.pdb
