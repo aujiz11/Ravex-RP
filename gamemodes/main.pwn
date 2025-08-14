@@ -20,6 +20,7 @@
 
 #include <YSI\YSI_Data\y_bit>
 
+#include "modules/config/build_info.inc"
 #include "modules/config/database.inc"
 #include "modules/config/plugins.inc"
 
@@ -28,6 +29,7 @@
 
 public OnGameModeInit()
 {
+    Build_Info();
     Plugin_Config();
     gMySQL_Connect();
     return 1;
