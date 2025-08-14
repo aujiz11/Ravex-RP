@@ -1,0 +1,1 @@
+#define COLOR_SELECT    0x7B4CE1FF
