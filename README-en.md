@@ -1,9 +1,9 @@
-# CrashZone-Freeroam
+# Aujiz-Base-Gamemode
 
 [Tiếng Việt](README.md) | English
 
 ## Introduction
-CrashZone-Freeroam is a freeroam gamemode source for SA-MP/open.mp servers, designed for developers who want to build or extend GTA San Andreas server systems. The project focuses on modular architecture, maintainability, extensibility, and integration with popular plugins.
+Aujiz Base Gamemode is a gamemode source for open.mp servers, designed for developers who want to build or extend Open Multiplayer server systems. The project focuses on modular architecture, maintainability, extensibility, and integration with popular plugins.
 
 ## Plugins Used
 | Plugin      | Link |
@@ -12,17 +12,21 @@ CrashZone-Freeroam is a freeroam gamemode source for SA-MP/open.mp servers, desi
 | Streamer    | [github.com/samp-incognito/samp-streamer-plugin](https://github.com/samp-incognito/samp-streamer-plugin) |
 | PawnPlus    | [github.com/IS4Code/PawnPlus](https://github.com/IS4Code/PawnPlus) |
 | SAMP BCrypt | [github.com/Sreyas-Sreelal/samp-bcrypt](https://github.com/Sreyas-Sreelal/samp-bcrypt) |
+| CrashDetect | [github.com/AmyrAhmady/samp-plugin-crashdetect](https://github.com/AmyrAhmady/samp-plugin-crashdetect) |
 
 ## Architecture
-- Source code is divided into modules: config, core, player, authentication, for clear management and easy extension.
-- Player system: manages player info, login state, authentication via MySQL and BCrypt.
-- Dialog: uses asynchronous dialogs for login/registration.
-- Database: data operations via asynchronous functions.
+
+- The source is built with PawnPlus, utilizing asynchronous (async) and dynamic arrays for optimal performance and flexible expansion.
+- Data is stored and queried via MySQL, ensuring speed and reliability for the system.
+- User passwords are encrypted with Bcrypt, enhancing account security.
+- Clear modular architecture: config, core, player, authentication, making maintenance and feature development easier.
+- Dialog system uses asynchronous calls, improving user experience for login/registration.
+- Player state and information are managed in a modern way, easy to integrate with auxiliary systems.
+- Easily extendable, allowing integration of new plugins or modules for custom server needs.
 
 ## Requirements
 - [open.mp Server v1.4.0.2779](https://github.com/openmultiplayer/open.mp/releases) or newer
 - Required plugins (see plugins folder)
-- Compile: Qawno/qawno.exe (or use vscode configuration)
 
 ## Contribution
 For feedback, bug reports, or feature requests, please contact via Github or the author's email.

@@ -1,9 +1,9 @@
-# CrashZone-Freeroam
+# Aujiz-Base-Gamemode
 
 Tiếng Việt | [English](README-en.md)
 
 ## Giới thiệu
-CrashZone-Freeroam là mã nguồn gamemode Freeroam dành cho máy chủ SA-MP/open.mp, hướng tới Developer muốn xây dựng hoặc mở rộng hệ thống server GTA San Andreas. Dự án tập trung vào kiến trúc module, dễ bảo trì, dễ mở rộng và tích hợp các plugin phổ biến.
+Aujiz Base Gamemode là mã nguồn gamemode dành cho máy chủ open.mp, hướng tới nhà phát triển muốn xây dựng hoặc mở rộng hệ thống máy chủ Open Multiplayer. Dự án tập trung vào kiến trúc module, dễ bảo trì, dễ mở rộng và tích hợp các plugin phổ biến.
 
 ## Plugin sử dụng
 | Plugin      | Link |
@@ -12,17 +12,21 @@ CrashZone-Freeroam là mã nguồn gamemode Freeroam dành cho máy chủ SA-MP/
 | Streamer    | [github.com/samp-incognito/samp-streamer-plugin](https://github.com/samp-incognito/samp-streamer-plugin) |
 | PawnPlus    | [github.com/IS4Code/PawnPlus](https://github.com/IS4Code/PawnPlus) |
 | SAMP BCrypt | [github.com/Sreyas-Sreelal/samp-bcrypt](https://github.com/Sreyas-Sreelal/samp-bcrypt) |
+| CrashDetect | [github.com/AmyrAhmady/samp-plugin-crashdetect](https://github.com/AmyrAhmady/samp-plugin-crashdetect) |
 
 ## Kiến trúc
-- Mã nguồn chia thành các module: cấu hình, core, player, authentication, giúp quản lý rõ ràng và mở rộng dễ dàng.
-- Hệ thống player: quản lý thông tin, trạng thái đăng nhập, xác thực qua MySQL và BCrypt.
-- Dialog: sử dụng dialog bất đồng bộ cho đăng nhập/đăng ký.
-- Database: thao tác dữ liệu qua các hàm bất đồng bộ.
+
+- Mã nguồn được xây dựng với PawnPlus, tận dụng bất đồng bộ (async) và mảng động giúp tối ưu hiệu năng và mở rộng linh hoạt.
+- Lưu trữ và truy vấn dữ liệu thông qua MySQL, đảm bảo tốc độ và độ tin cậy cho hệ thống.
+- Mã hoá mật khẩu người dùng bằng Bcrypt, tăng cường bảo mật tài khoản.
+- Kiến trúc module rõ ràng: cấu hình, core, player, authentication, dễ bảo trì và phát triển thêm tính năng mới.
+- Hệ thống dialog sử dụng bất đồng bộ, nâng cao trải nghiệm người dùng khi đăng nhập/đăng ký.
+- Quản lý trạng thái và thông tin người chơi theo chuẩn hiện đại, dễ tích hợp các hệ thống phụ trợ.
+- Dễ dàng mở rộng, tích hợp plugin hoặc module mới cho các nhu cầu riêng của server.
 
 ## Yêu cầu
 - [open.mp Server v1.4.0.2779](https://github.com/openmultiplayer/open.mp/releases) trở lên
 - Các plugin cần thiết (xem thư mục plugins)
-- Biên dịch: Qawno/qawno.exe (hoặc sử dụng cấu hình vscode)
 
 ## Đóng góp
 Mọi ý kiến đóng góp, báo lỗi hoặc yêu cầu mở rộng vui lòng gửi qua Github hoặc email tác giả.
