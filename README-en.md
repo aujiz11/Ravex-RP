@@ -13,6 +13,8 @@ Aujiz Base Gamemode is a gamemode source for open.mp servers, designed for devel
 | PawnPlus    | [github.com/IS4Code/PawnPlus](https://github.com/IS4Code/PawnPlus) |
 | SAMP BCrypt | [github.com/Sreyas-Sreelal/samp-bcrypt](https://github.com/Sreyas-Sreelal/samp-bcrypt) |
 | CrashDetect | [github.com/AmyrAhmady/samp-plugin-crashdetect](https://github.com/AmyrAhmady/samp-plugin-crashdetect) |
+| sscanf | [github.com/Y-Less/sscanf](https://github.com/Y-Less/sscanf) |
+| Pawn.CMD | [github.com/katursis/Pawn.CMD](https://github.com/katursis/Pawn.CMD) |
 
 ## Architecture
 
