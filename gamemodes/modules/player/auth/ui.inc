@@ -163,7 +163,7 @@ stock CreateMainMenuTD(playerid)
     PlayerTextDrawFont(playerid, MainMenuTD[playerid][15], TEXT_DRAW_FONT_SPRITE_DRAW);
     PlayerTextDrawSetProportional(playerid, MainMenuTD[playerid][15], true);
 
-    MainMenuTD[playerid][16] = CreatePlayerTextDraw(playerid, 323.000, 306.000, "Ravex RP - 3.0.12");
+    MainMenuTD[playerid][16] = CreatePlayerTextDraw(playerid, 323.000, 306.000, ""SERVER_NAME" - "BUILD_VERSION"");
     PlayerTextDrawLetterSize(playerid, MainMenuTD[playerid][16], 0.210, 1.299);
     PlayerTextDrawAlignment(playerid, MainMenuTD[playerid][16], TEXT_DRAW_ALIGN_CENTER);
     PlayerTextDrawColour(playerid, MainMenuTD[playerid][16], -1);
