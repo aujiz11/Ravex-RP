@@ -30,9 +30,11 @@ stock void:Auth_VerifyAccount(playerid, const password[])
 
     new ret = await BCrypt_AsyncVerify(password, buffer);
     if(!ret) {
-        __ShowMessage(playerid, "Mat khau khong chinh xac!");
         if(++_attemptLogin[playerid] == 3) {
-            return KickEx(playerid, "Qua xuat lan dang nhap");
+            KickEx(playerid, "Qua so lan dang nhap");
+        }
+        else {
+            __ShowMessage(playerid, str_format("Sai mat khau (%d/3)", _attemptLogin[playerid]));
         }
     }
     else {
@@ -50,13 +52,15 @@ stock void:Auth_CreateAccount(playerid, const password[])
     mysql_tquery_s(mainDB, str_format("INSERT INTO accounts (`Username`, `Password`) VALUES ('%s', '%s')", ReturnName(playerid), result), "OnPlayerRegister", "i", playerid);
 }
 
-static __ShowMessage(playerid, const message[])
+static __ShowMessage(playerid, ConstStringTag:message)
 {
     yield 1;
     _notifyCount[playerid]++;
-    new ticket = _notifyCount[playerid];
+    new ticket = _notifyCount[playerid],
+        buffer[128];
     
-    PlayerTextDrawSetString(playerid, MainMenuTD[playerid][19], message);
+    str_get(message, buffer);
+    PlayerTextDrawSetString(playerid, MainMenuTD[playerid][19], buffer);
     PlayerTextDrawShow(playerid, MainMenuTD[playerid][19]);
 
     task_detach();
@@ -159,7 +163,7 @@ hook OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
         {
             new len = strlen(_inputPassword[playerid]);
             if(len < 4 || len > G_PASSWORD_LENGTH)
-                return __ShowMessage(playerid, "Mat khau phai chua 4 den 32 ky tu!");
+                return __ShowMessage(playerid, @("Mat khau phai chua 4 den 32 ky tu!"));
 
             new result = await Auth_FindAccount(playerid);
             if(result == ACCOUNT_EXISTS) {

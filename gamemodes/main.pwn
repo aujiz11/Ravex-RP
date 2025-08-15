@@ -4,6 +4,7 @@
 #define PP_SYNTAX_AWAIT
 #define PP_SYNTAX_FOR_POOL
 #define PP_SYNTAX_YIELD
+#define PP_SYNTAX_@
         
 #define YSI_NO_MODE_CACHE
 #define YSI_NO_OPTIMISATION_MESSAGE
