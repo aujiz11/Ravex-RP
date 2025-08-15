@@ -6,6 +6,7 @@ const ACCOUNT_EXISTS = 1;
 
 static _notifyCount[MAX_PLAYERS];
 static _inputPassword[MAX_PLAYERS][G_PASSWORD_LENGTH];
+static _attemptLogin[MAX_PLAYERS];
 
 stock Task:Auth_FindAccount(playerid)
 {
@@ -30,6 +31,9 @@ stock void:Auth_VerifyAccount(playerid, const password[])
     new ret = await BCrypt_AsyncVerify(password, buffer);
     if(!ret) {
         __ShowMessage(playerid, "Mat khau khong chinh xac!");
+        if(++_attemptLogin[playerid] == 3) {
+            return KickEx(playerid, "Qua xuat lan dang nhap");
+        }
     }
     else {
         _notifyCount[playerid] = 0;
@@ -109,7 +113,7 @@ stock void:Auth_CheckBan(playerid)
         SelectTextDraw(playerid, COLOR_SELECT);
     }
     else {
-        KickEx(playerid);
+        KickEx(playerid, "Bi cam");
     }
 }
 
@@ -121,6 +125,7 @@ hook OnPlayerConnect(playerid)
 
     _inputPassword[playerid] = "\0";
     _notifyCount[playerid] = 0;
+    _attemptLogin[playerid] = 0;
 
     Bit_Let(InMainMenu, playerid);
     Auth_CheckBan(playerid);
