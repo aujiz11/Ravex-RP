@@ -3,7 +3,8 @@
 
 #define PP_SYNTAX_AWAIT
 #define PP_SYNTAX_FOR_POOL
-
+#define PP_SYNTAX_YIELD
+        
 #define YSI_NO_MODE_CACHE
 #define YSI_NO_OPTIMISATION_MESSAGE
 
@@ -16,11 +17,12 @@
 #include <streamer>
 #include <sscanf2>
 
-#include <pp-dialog>
+#include <YSI\YSI_Coding\y_malloc>
+#include <YSI\YSI_Data\y_bit>
+
+#include <tdialogs>
 #include <pp-mysql>
 #include <pp-bcrypt>
-
-#include <YSI\YSI_Data\y_bit>
 
 #include "modules/config/build_info.inc"
 #include "modules/config/database.inc"
