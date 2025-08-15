@@ -66,6 +66,7 @@ public OnPlayerCommandReceived(playerid, cmd[], params[], flags)
     {
         return 0;
     }
+    printf("[Pawn.CMD] %s: /%s %s", ReturnName(playerid), cmd, params);
     return 1;
 }
 
