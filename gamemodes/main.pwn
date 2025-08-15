@@ -1,7 +1,8 @@
 #define MAX_PLAYERS     50
 #define CGEN_MEMORY     20000
 
-#define PP_SYNTAX
+#define PP_SYNTAX_AWAIT
+#define PP_SYNTAX_FOR_POOL
 
 #define YSI_NO_MODE_CACHE
 #define YSI_NO_OPTIMISATION_MESSAGE

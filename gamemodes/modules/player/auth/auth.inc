@@ -48,7 +48,7 @@ stock void:Auth_CreateAccount(playerid, const password[])
 
 static __ShowMessage(playerid, const message[])
 {
-    yield 1;
+    task_yield(1);
     _notifyCount[playerid]++;
     new ticket = _notifyCount[playerid];
     
