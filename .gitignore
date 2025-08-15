@@ -9,5 +9,7 @@ filterscripts/*.amx
 
 components/*
 !components/pawncmd.dll
+!components/sscanf.dll
+
 omp-server.exe
 omp-server.pdb
