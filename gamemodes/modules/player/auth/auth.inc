@@ -11,7 +11,7 @@ stock Task:Auth_FindAccount(playerid)
 {
     new Task:t = task_new();
     task_detach();
-    task_yield(t); 
+    yield t;
 
     await mysql_aquery_s(mainDB, str_format("SELECT COUNT(*) FROM accounts WHERE Username = '%s' LIMIT 1", ReturnName(playerid)));
     
@@ -48,7 +48,7 @@ stock void:Auth_CreateAccount(playerid, const password[])
 
 static __ShowMessage(playerid, const message[])
 {
-    task_yield(1);
+    yield 1;
     _notifyCount[playerid]++;
     new ticket = _notifyCount[playerid];
     
@@ -133,18 +133,19 @@ hook OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
     {
         if(playertextid == MainMenuTD[playerid][18])
         {
-            new dialogResponse[e_DIALOG_RESPONSES];
-            await_arr(dialogResponse) DialogAsync_ShowPlayer(playerid, DIALOG_STYLE_INPUT, ""SERVER_NAME" | NHAP MAT KHAU", "{FFFFFF}Nhap mat khau cua ban ben duoi day:", ">>", "X");
-        
-            if(dialogResponse[Response] && !isnull(dialogResponse[InputText]))
+            yield 1;
+            new dialogInput[128];
+            await_str(dialogInput) ShowAsyncStringInputDialog(playerid, ""SERVER_NAME" | NHAP MAT KHAU", "{FFFFFF}Nhap mat khau cua ban ben duoi day:", ">>", "X");
+
+            if(!isnull(dialogInput))
             {
                 new buffer[32 + 2];
-                for(new i = 0; i < strlen(dialogResponse[InputText]) && i < 33; i++)
+                for(new i = 0; i < strlen(dialogInput) && i < 33; i++)
                 {
                     strcat(buffer, ".");
                 }
 
-                format(_inputPassword[playerid], _, "%s", dialogResponse[InputText]);
+                format(_inputPassword[playerid], _, "%s", dialogInput);
                 PlayerTextDrawSetString(playerid, MainMenuTD[playerid][18], buffer);
             }
             return 1;
