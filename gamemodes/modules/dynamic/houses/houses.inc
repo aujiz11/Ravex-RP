@@ -144,7 +144,9 @@ CMD:ahouse(playerid, params[])
 {
     // TODO - add condition for admin
     // if(PlayerInfo[playerid][pAdmin] < 4){return;}
-
+    
+    // `extract` is a macro for `unformat` similar to `sscanf`
+    // Read more: https://github.com/Y-Less/sscanf?tab=readme-ov-file#extract
     extract params -> new string:option[12], string:secoption[64]=""; else
     {
         SendClientMessage(playerid, -1, "SYNTAX: /ahouse [option]");
