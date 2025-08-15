@@ -13,6 +13,8 @@
 #include <samp_bcrypt>
 #include <crashdetect>
 #include <Pawn.CMD>
+#include <streamer>
+#include <sscanf2>
 
 #include <pp-dialog>
 #include <pp-mysql>
@@ -26,12 +28,15 @@
 
 #include "modules/core/main.inc"
 #include "modules/player/main.inc"
+#include "modules/dynamic/main.inc"
 
 public OnGameModeInit()
 {
     Build_Info();
     Plugin_Config();
     gMySQL_Connect();
+
+    LoadHouses();
     return 1;
 }
 
@@ -58,6 +63,10 @@ public OnPlayerDisconnect(playerid, reason)
 
 public OnPlayerCommandReceived(playerid, cmd[], params[], flags)
 {
+    if(!Bit_Get(PlayerLogged, playerid))
+    {
+        return 0;
+    }
     return 1;
 }
 
