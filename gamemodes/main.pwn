@@ -3,7 +3,6 @@
 
 #define PP_SYNTAX
 
-#define YSI_NO_HEAP_MALLOC
 #define YSI_NO_MODE_CACHE
 #define YSI_NO_OPTIMISATION_MESSAGE
 
