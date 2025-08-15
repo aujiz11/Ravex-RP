@@ -56,6 +56,30 @@ Function:OnLoadHouses()
     printf("[House] Da tai %d ngoi nha tu co so du lieu", rows);
 }
 
+stock SaveHouse(idx)
+{
+    if(idx < 0 || idx >= MAX_HOUSES || !pool_has(HousePool, idx)) 
+        return 0;
+
+    new houseData[E_HOUSE_INFO];
+    if(pool_get_arr_safe(HousePool, idx, houseData))
+    {
+        mysql_tquery_s(mainDB, str_format("UPDATE houses SET \
+            EntX = %f, EntY = %f, EntZ = %f, EntA = %f, \
+            EntWorld = %d, EntInterior = %d, ExitWorld = %d, ExitInterior = %d, \
+            ExitX = %f, ExitY = %f, ExitZ = %f, ExitA = %f, \
+            Price = %d WHERE id = %d LIMIT 1", 
+            houseData[houseEntX], houseData[houseEntY], houseData[houseEntZ], houseData[houseEntA], 
+            houseData[houseEntWorld], houseData[houseEntInt], houseData[houseExitWorld], houseData[houseExitInt], 
+            houseData[houseExitX], houseData[houseExitY], houseData[houseExitZ], houseData[houseExitA], 
+            houseData[housePrice], houseData[houseId]
+        ));
+
+        return 1;
+    }
+    return 0;
+}
+
 // update house pickup and label (if house exists)
 static __HousePickupAdd(idx)
 {
@@ -93,6 +117,11 @@ static __HousePickupAdd(idx)
         return 1;
     }
     return 0;
+}
+
+stock House_IsValid(idx)
+{
+    return (idx >= 0 && idx < MAX_HOUSES && pool_has(HousePool, idx));
 }
 
 stock House_Create(Float:x, Float:y, Float:z, Float:a, worldid, interiorid, price, ownerid = 0)
@@ -147,10 +176,10 @@ CMD:ahouse(playerid, params[])
     
     // `extract` is a macro for `unformat` similar to `sscanf`
     // Read more: https://github.com/Y-Less/sscanf?tab=readme-ov-file#extract
-    extract params -> new string:option[12], string:secoption[64]=""; else
+    extract params -> new string:option[12], string:secoption[128]=""; else
     {
-        SendClientMessage(playerid, -1, "SYNTAX: /ahouse [option]");
-        SendClientMessage(playerid, -1, "Options: create, delete");
+        SendSyntaxMessage(playerid, "/ahouse [option]");
+        SendClientMessage(playerid, -1, "Options: create, delete, edit");
         return 1;
     }
 
@@ -158,7 +187,7 @@ CMD:ahouse(playerid, params[])
     {
         extract secoption -> new price; else
         {
-            return SendClientMessage(playerid, -1, "SYNTAX: /ahouse create [price]");
+            return SendSyntaxMessage(playerid, "/ahouse create [price]");
         }
 
         if(pool_size(HousePool) >= MAX_HOUSES)
@@ -178,13 +207,94 @@ CMD:ahouse(playerid, params[])
     {
         extract secoption -> new houseid; else
         {
-            return SendClientMessage(playerid, -1, "SYNTAX: /ahouse delete [houseId]");
+            return SendSyntaxMessage(playerid, "/ahouse delete [houseId]");
         }
 
         if(!House_Delete(houseid))
             return SendClientMessage(playerid, -1, "Failed to delete house (ID: %d).", houseid);
 
         SendClientMessage(playerid, -1, "House deleted successfully (ID: %d).", houseid);
+    }
+    else if(!strcmp(option, "edit", true))
+    {
+        extract secoption -> new string:thirdoption[12], string:fourthoption[32]=""; else
+        {
+            SendSyntaxMessage(playerid, "/ahouse edit [option]");
+            SendClientMessage(playerid, -1, "Options: exterior, interior, price");
+            return 1;
+        }
+
+        if(!strcmp(thirdoption, "exterior", true))
+        {
+            extract fourthoption -> new houseid; else
+            {
+                return SendSyntaxMessage(playerid, "/ahouse edit exterior [houseId]");
+            }
+
+            if(!House_IsValid(houseid))
+                return SendClientMessage(playerid, -1, "Invalid house ID.");
+
+            new houseData[E_HOUSE_INFO];
+            if(pool_get_arr_safe(HousePool, houseid, houseData))
+            {
+                GetPlayerPos(playerid, houseData[houseEntX], houseData[houseEntY], houseData[houseEntZ]);
+                GetPlayerFacingAngle(playerid, houseData[houseEntA]);
+                houseData[houseEntWorld] = GetPlayerVirtualWorld(playerid);
+                houseData[houseEntInt] = GetPlayerInterior(playerid);
+                pool_set_arr(HousePool, houseid, houseData);
+
+                SendClientMessage(playerid, -1, "House exterior updated successfully (ID: %d).", houseid);
+                SaveHouse(houseid);
+                __HousePickupAdd(houseid);
+                return 1;
+            }
+        }
+        else if(!strcmp(thirdoption, "interior", true))
+        {
+            extract fourthoption -> new houseid; else
+            {
+                return SendSyntaxMessage(playerid, "/ahouse edit interior [houseId]");
+            }
+
+            if(!House_IsValid(houseid))
+                return SendClientMessage(playerid, -1, "Invalid house ID.");
+
+            new houseData[E_HOUSE_INFO];
+            if(pool_get_arr_safe(HousePool, houseid, houseData))
+            {
+                GetPlayerPos(playerid, houseData[houseExitX], houseData[houseExitY], houseData[houseExitZ]);
+                GetPlayerFacingAngle(playerid, houseData[houseExitA]);
+                houseData[houseExitWorld] = GetPlayerVirtualWorld(playerid);
+                houseData[houseExitInt] = GetPlayerInterior(playerid);
+                pool_set_arr(HousePool, houseid, houseData);
+
+                SendClientMessage(playerid, -1, "House interior updated successfully (ID: %d).", houseid);
+                SaveHouse(houseid);
+                __HousePickupAdd(houseid);
+                return 1;
+            }
+        }
+        else if(!strcmp(thirdoption, "price", true))
+        {
+            extract fourthoption -> new houseid, price; else
+            {
+                return SendSyntaxMessage(playerid, "/ahouse edit price [houseId] [price]");
+            }
+
+            if(!House_IsValid(houseid))
+                return SendClientMessage(playerid, -1, "Invalid house ID.");
+        
+            if(price <= 0)
+                return SendClientMessage(playerid, -1, "Invalid price.");
+
+            if(pool_set_cell_safe(HousePool, houseid, housePrice, price))
+            {
+                SendClientMessage(playerid, -1, "House price updated successfully (ID: %d).", houseid);
+                SaveHouse(houseid);
+                __HousePickupAdd(houseid);
+                return 1;
+            }
+        }
     }
     else
     {
