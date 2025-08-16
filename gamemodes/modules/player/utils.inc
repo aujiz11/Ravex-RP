@@ -5,6 +5,19 @@ stock ReturnName(playerid)
     return szName;
 }
 
+stock ReturnRPName(playerid)
+{
+    new szName[MAX_PLAYER_NAME + 1];
+    GetPlayerName(playerid, szName, sizeof(szName));
+    
+    for(new i = 0; i < strlen(szName); i++)
+    {
+        if(szName[i] == '_')
+            szName[i] = ' ';
+    }
+    return szName;
+}
+
 stock IsPlayerLogged(playerid)
 {
     return Bit_Get(PlayerLogged, playerid);
