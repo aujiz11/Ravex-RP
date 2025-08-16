@@ -7,7 +7,13 @@ enum E_PLAYER_INFO
     pBirthDate[12],
     pGender,
     pModel,
-    pReferral
+    pReferral,
+    Float:pPosX,
+    Float:pPosY,
+    Float:pPosZ,
+    Float:pAngle,
+    pWorld,
+    pInterior
 };
 
 new PlayerInfo[MAX_PLAYERS][E_PLAYER_INFO];

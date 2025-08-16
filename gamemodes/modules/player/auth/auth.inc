@@ -40,8 +40,10 @@ stock void:Auth_VerifyAccount(playerid, const password[])
     else {
         _notifyCount[playerid] = 0;
         _inputPassword[playerid] = "\0";
-        PlayerSpawn(playerid); 
-        // should not be used for later
+        new exists = LoadAccount(playerid); // load player data
+        if(exists) {
+            PlayerSpawn(playerid);
+        }
     }
 }
 
@@ -94,15 +96,29 @@ Function:OnPlayerRegister(playerid)
 
 stock PlayerSpawn(playerid)
 {
+    if(PlayerInfo[playerid][pGender] == 0) {
+        for(new i = 1; i < 19; i++) {
+            PlayerTextDrawHide(playerid, MainMenuTD[playerid][i]);
+        }
+        
+        ShowCharacterCreate(playerid);
+        return 1;
+    }
+
     Bit_Vet(InMainMenu, playerid);
     Bit_Let(PlayerLogged, playerid);
     DestroyMainMenuTD(playerid);
     CancelSelectTextDraw(playerid);
 
     TogglePlayerSpectating(playerid, false);
-    SetPlayerPos(playerid, 1481.6862, -1725.2517, 13.5469);
+    SetPlayerPos(playerid, PlayerInfo[playerid][pPosX], PlayerInfo[playerid][pPosY], PlayerInfo[playerid][pPosZ]);
+    SetPlayerFacingAngle(playerid, PlayerInfo[playerid][pAngle]);
+    SetPlayerVirtualWorld(playerid, PlayerInfo[playerid][pWorld]);
+    SetPlayerInterior(playerid, PlayerInfo[playerid][pInterior]);
 
-    // TODO - code to process player data (load player data)
+    wait_ticks(20);
+    SetPlayerSkin(playerid, PlayerInfo[playerid][pModel]);
+    SendClientMessage(playerid, COLOR<GREEN>, "Welcome back, %s!", ReturnRPName(playerid));
     return 1;
 }
 
@@ -189,12 +205,6 @@ hook OnPlayerClickTextDraw(playerid, Text:clickedid)
         return 1;
     }
     return 0;
-}
-
-hook OnPlayerDisconnect(playerid, reason)
-{
-    Bit_Vet(PlayerLogged, playerid);
-    return 1;
 }
 
 hook OnPlayerRequestClass(playerid, classid)

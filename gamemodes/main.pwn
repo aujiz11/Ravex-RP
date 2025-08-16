@@ -5,6 +5,7 @@
 #define PP_SYNTAX_FOR_POOL
 #define PP_SYNTAX_YIELD
 #define PP_SYNTAX_@
+#define PP_SYNTAX_STRING_OP
         
 #define YSI_NO_MODE_CACHE
 #define YSI_NO_OPTIMISATION_MESSAGE
@@ -62,6 +63,8 @@ public OnPlayerConnect(playerid)
 
 public OnPlayerDisconnect(playerid, reason)
 {
+    SaveAccount(playerid);
+    Bit_Vet(PlayerLogged, playerid);
     return 1;
 }
 
