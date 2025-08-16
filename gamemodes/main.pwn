@@ -24,6 +24,7 @@
 #include <tdialogs>
 #include <pp-mysql>
 #include <pp-bcrypt>
+#include <timeutils>
 
 #include "modules/config/build_info.inc"
 #include "modules/config/database.inc"
