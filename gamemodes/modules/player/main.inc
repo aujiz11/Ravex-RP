@@ -7,3 +7,4 @@
 #include "modules/player/utils.inc"
 
 #include "modules/player/auth/auth.inc"
+#include "modules/player/character/character.inc"

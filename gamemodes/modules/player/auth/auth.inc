@@ -83,8 +83,12 @@ static __ShowMessage(playerid, ConstStringTag:message)
 Function:OnPlayerRegister(playerid)
 {
     PlayerInfo[playerid][pSQLID] = cache_insert_id();
-    SendClientMessage(playerid, -1, "Dang ky thanh cong");
-    PlayerSpawn(playerid);
+
+    for(new i = 1; i < 19; i++) {
+        PlayerTextDrawHide(playerid, MainMenuTD[playerid][i]);
+    }
+
+    ShowCharacterCreate(playerid);
     return 1;
 }
 
@@ -98,7 +102,7 @@ stock PlayerSpawn(playerid)
     TogglePlayerSpectating(playerid, false);
     SetPlayerPos(playerid, 1481.6862, -1725.2517, 13.5469);
 
-    // TODO - code to process player data (when registering)
+    // TODO - code to process player data (load player data)
     return 1;
 }
 
