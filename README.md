@@ -5,6 +5,13 @@ Tiếng Việt | [English](README-en.md)
 ## Giới thiệu
 Aujiz Base Gamemode là mã nguồn gamemode dành cho máy chủ open.mp, hướng tới nhà phát triển muốn xây dựng hoặc mở rộng hệ thống máy chủ Open Multiplayer. Dự án tập trung vào kiến trúc module, dễ bảo trì, dễ mở rộng và tích hợp các plugin phổ biến.
 
+## Xem trước
+<p>
+<img src="images/img_1.png" alt="img_1" width="30%" />
+<img src="images/img_2.png" alt="img_2" width="30%" />
+<img src="images/img_3.png" alt="img_3" width="30%" />
+</p>
+
 ## Plugin sử dụng
 | Plugin      | Link |
 |-------------|------|
