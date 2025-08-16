@@ -191,10 +191,10 @@ CMD:ahouse(playerid, params[])
         }
 
         if(pool_size(HousePool) >= MAX_HOUSES)
-            return SendClientMessage(playerid, -1, "Maximum house limit reached.");
+            return SendClientMessage(playerid, COLOR<GREY>, "Maximum house limit reached.");
 
         if(price <= 0)
-            return SendClientMessage(playerid, -1, "Price must be greater than 0.");
+            return SendClientMessage(playerid, COLOR<GREY>, "Price must be greater than 0.");
 
         new Float:_pos[4];
         GetPlayerPos(playerid, _pos[0], _pos[1], _pos[2]);
@@ -211,7 +211,7 @@ CMD:ahouse(playerid, params[])
         }
 
         if(!House_Delete(houseid))
-            return SendClientMessage(playerid, -1, "Failed to delete house (ID: %d).", houseid);
+            return SendClientMessage(playerid, COLOR<GREY>, "Failed to delete house (ID: %d).", houseid);
 
         SendClientMessage(playerid, -1, "House deleted successfully (ID: %d).", houseid);
     }
@@ -243,7 +243,7 @@ CMD:ahouse(playerid, params[])
                 houseData[houseEntInt] = GetPlayerInterior(playerid);
                 pool_set_arr(HousePool, houseid, houseData);
 
-                SendClientMessage(playerid, -1, "House exterior updated successfully (ID: %d).", houseid);
+                SendClientMessage(playerid, COLOR<GREY>, "House exterior updated successfully (ID: %d).", houseid);
                 SaveHouse(houseid);
                 __HousePickupAdd(houseid);
                 return 1;
@@ -257,7 +257,7 @@ CMD:ahouse(playerid, params[])
             }
 
             if(!House_IsValid(houseid))
-                return SendClientMessage(playerid, -1, "Invalid house ID.");
+                return SendClientMessage(playerid, COLOR<GREY>, "Invalid house ID.");
 
             new houseData[E_HOUSE_INFO];
             if(pool_get_arr_safe(HousePool, houseid, houseData))
@@ -282,10 +282,10 @@ CMD:ahouse(playerid, params[])
             }
 
             if(!House_IsValid(houseid))
-                return SendClientMessage(playerid, -1, "Invalid house ID.");
+                return SendClientMessage(playerid, COLOR<GREY>, "Invalid house ID.");
         
             if(price <= 0)
-                return SendClientMessage(playerid, -1, "Invalid price.");
+                return SendClientMessage(playerid, COLOR<GREY>, "Invalid price.");
 
             if(pool_set_cell_safe(HousePool, houseid, housePrice, price))
             {
@@ -298,7 +298,7 @@ CMD:ahouse(playerid, params[])
     }
     else
     {
-        SendClientMessage(playerid, -1, "Invalid option.");
+        SendClientMessage(playerid, COLOR<GREY>, "Invalid option.");
     }
     return 1;
 }
