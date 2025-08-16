@@ -5,6 +5,8 @@
 ## Introduction
 Aujiz Base Gamemode is a gamemode source for open.mp servers, designed for developers who want to build or extend Open Multiplayer server systems. The project focuses on modular architecture, maintainability, extensibility, and integration with popular plugins.
 
+**View [update log](UPDATE.md)**
+
 ## Preview
 <p>
 <img src="images/img_1.png" alt="img_1" width="30%" />
