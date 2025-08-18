@@ -1,3 +1,5 @@
+#include <YSI\YSI_Coding\y_hooks>
+
 stock LoadHouses()
 {
     // ordered should be set to TRUE to ensure always getting
@@ -299,6 +301,36 @@ CMD:ahouse(playerid, params[])
     else
     {
         SendClientMessage(playerid, COLOR<GREY>, "Invalid option.");
+    }
+    return 1;
+}
+
+hook OnPlayerKeyStateChange(playerid, KEY:oldkeys, KEY:newkeys)
+{
+    if(IsPlayerEnterExit(playerid, oldkeys, newkeys))
+    {
+        for_pool(i : HousePool)
+        {
+            new houseData[E_HOUSE_INFO];
+            if(iter_get_arr_safe(i, houseData))
+            {
+                if(IsPlayerInRangeOfPoint(playerid, 2.5, houseData[houseEntX], houseData[houseEntY], houseData[houseEntZ]) 
+                    && GetPlayerVirtualWorld(playerid) == houseData[houseEntWorld] && GetPlayerInterior(playerid) == houseData[houseEntInt])
+                {
+                    if(houseData[houseExitX] == 0.0)
+                        return SendClientMessage(playerid, COLOR<GREY>, "Ngoi nha nay khong co noi that.");
+
+                    PlayerTeleport(playerid, houseData[houseExitX], houseData[houseExitY], houseData[houseExitZ], houseData[houseExitA], houseData[houseExitWorld], houseData[houseExitInt]);
+                    return ~1;
+                }
+                else if(IsPlayerInRangeOfPoint(playerid, 2.5, houseData[houseExitX], houseData[houseExitY], houseData[houseExitZ]) 
+                    && GetPlayerVirtualWorld(playerid) == houseData[houseExitWorld] && GetPlayerInterior(playerid) == houseData[houseExitInt])
+                {
+                    PlayerTeleport(playerid, houseData[houseEntX], houseData[houseEntY], houseData[houseEntZ], houseData[houseEntA], houseData[houseEntWorld], houseData[houseEntInt]);
+                    return ~1;
+                }
+            }
+        }
     }
     return 1;
 }
