@@ -29,3 +29,39 @@ stock KickEx(playerid, const reason[])
     wait_ticks(50);
     return Kick(playerid);
 }
+
+stock PlayerTeleport(playerid, Float:x, Float:y, Float:z, Float:a, worldid, interiorid)
+{
+    if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+    {
+        new vehicleid = GetPlayerVehicleID(playerid);
+        SetVehiclePos(vehicleid, x, y, z);
+        SetVehicleZAngle(vehicleid, a);
+        SetVehicleVirtualWorld(vehicleid, worldid);
+        LinkVehicleToInterior(vehicleid, interiorid);
+        PutPlayerInVehicle(playerid, vehicleid, 0);
+    }
+    else
+    {
+        SetPlayerPos(playerid, x, y, z);
+        SetPlayerFacingAngle(playerid, a);
+        SetPlayerVirtualWorld(playerid, worldid);
+        SetPlayerInterior(playerid, interiorid);
+    }
+
+    Streamer_UpdateEx(playerid, x, y, z, worldid, interiorid);
+    return 1;
+}
+
+stock IsPlayerEnterExit(playerid, KEY:oldkeys, KEY:newkeys)
+{
+    if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+    {
+        return PRESSED(KEY_FIRE);
+    }
+    else if(GetPlayerState(playerid) == PLAYER_STATE_ONFOOT)
+    {
+        return PRESSED(KEY_WALK);
+    }
+    return 0;
+}
