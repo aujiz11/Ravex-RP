@@ -1,5 +1,6 @@
 #define MAX_PLAYERS     50
 #define CGEN_MEMORY     20000
+#define BCRYPT_COST     6 // test run (845ms > 484ms)
 
 #define PP_SYNTAX_AWAIT
 #define PP_SYNTAX_FOR_POOL
