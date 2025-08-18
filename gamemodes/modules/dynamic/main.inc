@@ -4,4 +4,7 @@
 #define _dynamic_main_inc
 
 #include "modules/dynamic/houses/header.inc"
+#include "modules/dynamic/vehicle/header.inc"
+
+#include "modules/dynamic/vehicle/vehicle.inc"
 #include "modules/dynamic/houses/houses.inc"
