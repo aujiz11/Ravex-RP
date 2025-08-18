@@ -18,7 +18,7 @@ static const _femaleSkins[MAX_CHARACTER_SKINS] = { 12, 40, 41, 55, 56, 65, 69 };
 
 static __ShowMessage(playerid, ConstStringTag:message)
 {
-    yield 1;
+    task_yield(1);
     _notifyCount[playerid]++;
     new ticket = _notifyCount[playerid],
         buffer[128];

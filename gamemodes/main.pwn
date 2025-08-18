@@ -4,7 +4,7 @@
 
 #define PP_SYNTAX_AWAIT
 #define PP_SYNTAX_FOR_POOL
-#define PP_SYNTAX_YIELD
+#define PP_SYNTAX_FOR_MAP
 #define PP_SYNTAX_@
 #define PP_SYNTAX_STRING_OP
         
@@ -21,6 +21,7 @@
 #include <sscanf2>
 
 #include <YSI\YSI_Coding\y_malloc>
+#include <YSI\YSI_Coding\y_timers>
 #include <YSI\YSI_Data\y_bit>
 
 #include <tdialogs>
@@ -33,8 +34,8 @@
 #include "modules/config/plugins.inc"
 
 #include "modules/core/main.inc"
-#include "modules/player/main.inc"
 #include "modules/dynamic/main.inc"
+#include "modules/player/main.inc"
 
 public OnGameModeInit()
 {

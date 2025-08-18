@@ -12,7 +12,7 @@ stock Task:Auth_FindAccount(playerid)
 {
     new Task:t = task_new();
     task_detach();
-    yield t;
+    task_yield(t);
 
     await mysql_aquery_s(mainDB, str_format("SELECT COUNT(*) FROM accounts WHERE Username = '%s' LIMIT 1", ReturnName(playerid)));
     
@@ -56,7 +56,7 @@ stock void:Auth_CreateAccount(playerid, const password[])
 
 static __ShowMessage(playerid, ConstStringTag:message)
 {
-    yield 1;
+    task_yield(1);
     _notifyCount[playerid]++;
     new ticket = _notifyCount[playerid],
         buffer[128];
@@ -162,7 +162,7 @@ hook OnPlayerClickPlayerTextDraw(playerid, PlayerText:playertextid)
     {
         if(playertextid == MainMenuTD[playerid][18])
         {
-            yield 1;
+            task_yield(1);
             new dialogInput[128];
             await_str(dialogInput) ShowAsyncStringInputDialog(playerid, ""SERVER_NAME" | NHAP MAT KHAU", "{FFFFFF}Nhap mat khau cua ban ben duoi day:", ">>", "X");
 
