@@ -91,6 +91,21 @@ stock bool:Vehicle_GetFuel(vehicleid, &Float:fuel)
     return false;
 }
 
+stock bool:Vehicle_SetFuel(vehicleid, Float:fuel)
+{
+    if(!IsValidVehicle(vehicleid))
+    {
+        return false;
+    }
+
+    if(map_has_key(VehicleMap, vehicleid))
+    {
+        map_set_cell(VehicleMap, vehicleid, vehicleFuel, fuel);
+        return true;
+    }
+    return false;
+}
+
 stock bool:Vehicle_GetEngineState(vehicleid, &VEHICLE_PARAMS:engineState)
 {
     if(!IsValidVehicle(vehicleid))
@@ -110,6 +125,28 @@ stock bool:Vehicle_SetEngineState(vehicleid, VEHICLE_PARAMS:engineState)
     }
 
     SetVehicleParamsEx(vehicleid, engineState);
+    return true;
+}
+
+stock bool:Vehicle_GetLightState(vehicleid, &VEHICLE_PARAMS:lightState)
+{
+    if(!IsValidVehicle(vehicleid))
+    {
+        return false;
+    }
+    
+    GetVehicleParamsEx(vehicleid, _, lightState);
+    return true;
+}
+
+stock bool:Vehicle_SetLightState(vehicleid, VEHICLE_PARAMS:lightState)
+{
+    if(!IsValidVehicle(vehicleid))
+    {
+        return false;
+    }
+
+    SetVehicleParamsEx(vehicleid, _, lightState);
     return true;
 }
 
@@ -281,6 +318,19 @@ hook OnPlayerKeyStateChange(playerid, KEY:oldkeys, KEY:newkeys)
                     SendClientMessage(playerid, COLOR<GREY>, "Ban da tat dong co xe!");
                 }
             }
+        }
+    }
+
+    if(PRESSED(KEY_LOOK_BEHIND) && GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
+    {
+        new vehicleid = GetPlayerVehicleID(playerid);
+        new VEHICLE_PARAMS:lightState;
+        Vehicle_GetLightState(vehicleid, lightState);
+        if(lightState == VEHICLE_PARAMS_ON) {
+            Vehicle_SetLightState(vehicleid, VEHICLE_PARAMS_OFF);
+        }
+        else {
+            Vehicle_SetLightState(vehicleid, VEHICLE_PARAMS_ON);
         }
     }
     return 1;
