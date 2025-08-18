@@ -130,7 +130,7 @@ stock void:Auth_CheckBan(playerid)
     cache_get_value_name_int(0, "COUNT(*)", count);
     if(!count) {
         CreateMainMenuTD(playerid);
-        task_ticks(10);
+        wait_ms(700);
         for(new i; i < 20; i++) {
             PlayerTextDrawShow(playerid, MainMenuTD[playerid][i]);
         }
