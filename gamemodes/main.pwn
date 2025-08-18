@@ -19,10 +19,12 @@
 #include <Pawn.CMD>
 #include <streamer>
 #include <sscanf2>
+#include <cef>
 
 #include <YSI\YSI_Coding\y_malloc>
 #include <YSI\YSI_Coding\y_timers>
 #include <YSI\YSI_Data\y_bit>
+#include <YSI\YSI_Game\y_vehicledata>
 
 #include <tdialogs>
 #include <pp-mysql>
@@ -36,6 +38,7 @@
 #include "modules/core/main.inc"
 #include "modules/dynamic/main.inc"
 #include "modules/player/main.inc"
+#include "modules/cef/speedo.inc"
 
 public OnGameModeInit()
 {
