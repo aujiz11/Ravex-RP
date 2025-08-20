@@ -277,10 +277,9 @@ task _VehicleTask[500]()
                     }
                     // TODO - calculate fuel consumption for each vehicle model
                     GetVehiclePos(vehicleid, vehicleData[vehicleX], vehicleData[vehicleY], vehicleData[vehicleZ]);
+                    iter_set_arr(idx, vehicleData);
                 }
             }
-
-            iter_set_arr(idx, vehicleData);
         }
     }
 }
