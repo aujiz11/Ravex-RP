@@ -267,8 +267,8 @@ task _VehicleTask[500]()
 
             if(engineState == VEHICLE_PARAMS_ON)
             {
-                new Float:distance = 0.0;
-                if((distance = GetVehicleDistanceFromPoint(vehicleid, vehicleData[vehicleX], vehicleData[vehicleY], vehicleData[vehicleZ])) > 5.0)
+                new Float:distance = GetVehicleDistanceFromPoint(vehicleid, vehicleData[vehicleX], vehicleData[vehicleY], vehicleData[vehicleZ]);
+                if(distance >= 5.0 && distance <= 40.0)
                 {
                     new Float:fuelConsumption = distance * 0.003;
                     vehicleData[vehicleFuel] -= fuelConsumption;
