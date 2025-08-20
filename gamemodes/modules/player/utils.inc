@@ -53,7 +53,7 @@ stock PlayerTeleport(playerid, Float:x, Float:y, Float:z, Float:a, worldid, inte
     return 1;
 }
 
-stock IsPlayerEnterExit(playerid, KEY:oldkeys, KEY:newkeys)
+stock IsPlayerPressEnterKey(playerid, KEY:oldkeys, KEY:newkeys)
 {
     if(GetPlayerState(playerid) == PLAYER_STATE_DRIVER)
     {

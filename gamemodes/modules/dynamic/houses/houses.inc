@@ -307,7 +307,7 @@ CMD:ahouse(playerid, params[])
 
 hook OnPlayerKeyStateChange(playerid, KEY:oldkeys, KEY:newkeys)
 {
-    if(IsPlayerEnterExit(playerid, oldkeys, newkeys))
+    if(IsPlayerPressEnterKey(playerid, oldkeys, newkeys))
     {
         for_pool(i : HousePool)
         {
