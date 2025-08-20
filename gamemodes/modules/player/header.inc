@@ -3,6 +3,7 @@ const G_PASSWORD_LENGTH = 32;
 enum E_PLAYER_INFO
 {
     pSQLID,
+    pRegistered,
     pName[MAX_PLAYER_NAME + 1],
     pBirthDate[12],
     pGender,
@@ -13,7 +14,8 @@ enum E_PLAYER_INFO
     Float:pPosZ,
     Float:pAngle,
     pWorld,
-    pInterior
+    pInterior,
+    pAdmin
 };
 
 new PlayerInfo[MAX_PLAYERS][E_PLAYER_INFO];

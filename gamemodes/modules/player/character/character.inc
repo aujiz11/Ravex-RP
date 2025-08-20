@@ -89,6 +89,7 @@ stock PlayerFinishCharacter(playerid)
 
     format(PlayerInfo[playerid][pBirthDate], 12, "%s", tempInfo[playerid][charBirthdate]);
     PlayerInfo[playerid][pGender] = tempInfo[playerid][charGender];
+    PlayerInfo[playerid][pRegistered] = 1;
     
     wait_ticks(10);
     SetPlayerSkin(playerid, PlayerInfo[playerid][pModel]);

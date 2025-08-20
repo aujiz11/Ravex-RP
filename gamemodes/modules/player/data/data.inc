@@ -63,6 +63,7 @@ stock SaveAccount(playerid)
     GetPlayerPos(playerid, pos[0], pos[1], pos[2]);
     GetPlayerFacingAngle(playerid, pos[3]);
 
+    SavePlayerInteger(playerid, query, "Registered", PlayerInfo[playerid][pRegistered]);
     SavePlayerInteger(playerid, query, "Model", PlayerInfo[playerid][pModel]);
     SavePlayerInteger(playerid, query, "World", GetPlayerVirtualWorld(playerid));
     SavePlayerInteger(playerid, query, "Interior", GetPlayerInterior(playerid));
@@ -87,7 +88,8 @@ stock LoadAccount(playerid)
     }
 
     cache_get_value_name_int(0, "id", PlayerInfo[playerid][pSQLID]);
-    
+    cache_get_value_name_int(0, "Registered", PlayerInfo[playerid][pRegistered]);
+
     cache_get_value_name(0, "Username", PlayerInfo[playerid][pName]);
     cache_get_value_name(0, "BirthDate", PlayerInfo[playerid][pBirthDate]);
     cache_get_value_name_int(0, "Gender", PlayerInfo[playerid][pGender]);

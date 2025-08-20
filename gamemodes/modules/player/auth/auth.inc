@@ -86,17 +86,26 @@ Function:OnPlayerRegister(playerid)
 {
     PlayerInfo[playerid][pSQLID] = cache_insert_id();
 
-    for(new i = 1; i < 19; i++) {
-        PlayerTextDrawHide(playerid, MainMenuTD[playerid][i]);
-    }
+    // ensures that newly created accounts receive default data
+    _notifyCount[playerid] = 0;
+    _inputPassword[playerid] = "\0";
+    new exists = LoadAccount(playerid);
+    if(exists && !PlayerInfo[playerid][pRegistered]) {
+        for(new i = 1; i < 19; i++) {
+            PlayerTextDrawHide(playerid, MainMenuTD[playerid][i]);
+        }
 
-    ShowCharacterCreate(playerid);
+        ShowCharacterCreate(playerid);
+    }
+    else {
+        KickEx(playerid, "Khong tim thay du lieu");
+    }
     return 1;
 }
 
 stock PlayerSpawn(playerid)
 {
-    if(PlayerInfo[playerid][pGender] == 0) {
+    if(PlayerInfo[playerid][pRegistered] == 0) {
         for(new i = 1; i < 19; i++) {
             PlayerTextDrawHide(playerid, MainMenuTD[playerid][i]);
         }
