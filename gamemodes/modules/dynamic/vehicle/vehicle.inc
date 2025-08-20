@@ -264,6 +264,23 @@ task _VehicleTask[500]()
             if(vehicleData[vehicleFuel] <= 0.0 && engineState == VEHICLE_PARAMS_ON) {
                 Vehicle_SetEngineState(vehicleid, VEHICLE_PARAMS_OFF);
             }
+
+            if(engineState == VEHICLE_PARAMS_ON)
+            {
+                new Float:distance = 0.0;
+                if((distance = GetVehicleDistanceFromPoint(vehicleid, vehicleData[vehicleX], vehicleData[vehicleY], vehicleData[vehicleZ])) > 5.0)
+                {
+                    new Float:fuelConsumption = distance * 0.003;
+                    vehicleData[vehicleFuel] -= fuelConsumption;
+                    if(vehicleData[vehicleFuel] < 0.0) {
+                        vehicleData[vehicleFuel] = 0.0;
+                    }
+                    // TODO - calculate fuel consumption for each vehicle model
+                    GetVehiclePos(vehicleid, vehicleData[vehicleX], vehicleData[vehicleY], vehicleData[vehicleZ]);
+                }
+            }
+
+            iter_set_arr(idx, vehicleData);
         }
     }
 }
