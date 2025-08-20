@@ -28,6 +28,7 @@
 #include <pp-mysql>
 #include <pp-bcrypt>
 #include <timeutils>
+#include <samp-distance>
 
 #include "modules/config/build_info.inc"
 #include "modules/config/database.inc"
