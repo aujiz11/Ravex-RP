@@ -8,5 +8,8 @@
 
 #include "modules/player/data/data.inc"
 
+#include "modules/player/admin/admin.inc"
+#include "modules/player/admin/cmds.inc"
+
 #include "modules/player/auth/auth.inc"
 #include "modules/player/character/character.inc"

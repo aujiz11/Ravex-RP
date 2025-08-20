@@ -6,3 +6,6 @@
 
 #define SendSyntaxMessage(%0,%1) \
     SendClientMessage(%0, 0x61B15DFF, "SYNTAX: {BDBDBD}"%1)
+
+#define SendNonAuth(%0) \
+    SendClientMessage(%0, COLOR<INDIANRED>, "Ban khong co quyen han su dung chuc nang nay.")

@@ -15,5 +15,6 @@ CREATE TABLE `accounts`  (
   `World` int NOT NULL DEFAULT 0,
   `Interior` tinyint NOT NULL DEFAULT 0,
   `Admin` tinyint NOT NULL DEFAULT 0,
+  `AdminCode` varchar(128) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL,
   PRIMARY KEY (`id`, `Username`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = DYNAMIC;

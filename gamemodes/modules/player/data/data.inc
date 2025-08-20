@@ -67,6 +67,8 @@ stock SaveAccount(playerid)
     SavePlayerInteger(playerid, query, "Model", PlayerInfo[playerid][pModel]);
     SavePlayerInteger(playerid, query, "World", GetPlayerVirtualWorld(playerid));
     SavePlayerInteger(playerid, query, "Interior", GetPlayerInterior(playerid));
+    SavePlayerInteger(playerid, query, "Admin", PlayerInfo[playerid][pAdmin]);
+    //SavePlayerString(playerid, query, "AdminCode", PlayerInfo[playerid][pAdminCode]);
 
     SavePlayerFloat(playerid, query, "PlayerPosX", pos[0]);
     SavePlayerFloat(playerid, query, "PlayerPosY", pos[1]);
@@ -97,6 +99,8 @@ stock LoadAccount(playerid)
     cache_get_value_name_int(0, "Referral", PlayerInfo[playerid][pReferral]);
     cache_get_value_name_int(0, "World", PlayerInfo[playerid][pWorld]);
     cache_get_value_name_int(0, "Interior", PlayerInfo[playerid][pInterior]);
+    cache_get_value_name_int(0, "Admin", PlayerInfo[playerid][pAdmin]);
+    cache_get_value_name(0, "AdminCode", PlayerInfo[playerid][pAdminCode]);
 
     cache_get_value_name_float(0, "PlayerPosX", PlayerInfo[playerid][pPosX]);
     cache_get_value_name_float(0, "PlayerPosY", PlayerInfo[playerid][pPosY]);

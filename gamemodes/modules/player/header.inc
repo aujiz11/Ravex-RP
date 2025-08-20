@@ -15,7 +15,9 @@ enum E_PLAYER_INFO
     Float:pAngle,
     pWorld,
     pInterior,
-    pAdmin
+    pAdmin,
+    pAdminDuty,
+    pAdminCode[128]
 };
 
 new PlayerInfo[MAX_PLAYERS][E_PLAYER_INFO];
