@@ -17,7 +17,8 @@ enum E_PLAYER_INFO
     pInterior,
     pAdmin,
     pAdminDuty,
-    pAdminCode[128]
+    pAdminCode[128],
+    pAdminPower
 };
 
 new PlayerInfo[MAX_PLAYERS][E_PLAYER_INFO];

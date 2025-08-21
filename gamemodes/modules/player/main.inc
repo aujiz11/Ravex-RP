@@ -4,6 +4,7 @@
 #define _player_main_inc
 
 #include "modules/player/header.inc"
+#include "modules/player/admin/header.inc"
 #include "modules/player/utils.inc"
 
 #include "modules/player/data/data.inc"

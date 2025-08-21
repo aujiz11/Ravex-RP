@@ -173,8 +173,8 @@ stock House_Delete(idx)
 
 CMD:ahouse(playerid, params[])
 {
-    // TODO - add condition for admin
-    // if(PlayerInfo[playerid][pAdmin] < 4){return;}
+    if(!IsAdminPowerful(playerid, ADMIN_POWER_PROPERTY))
+        return SendNonAuth(playerid);
     
     // `extract` is a macro for `unformat` similar to `sscanf`
     // Read more: https://github.com/Y-Less/sscanf?tab=readme-ov-file#extract

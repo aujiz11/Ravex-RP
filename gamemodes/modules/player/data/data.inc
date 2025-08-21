@@ -69,6 +69,7 @@ stock SaveAccount(playerid)
     SavePlayerInteger(playerid, query, "Interior", GetPlayerInterior(playerid));
     SavePlayerInteger(playerid, query, "Admin", PlayerInfo[playerid][pAdmin]);
     //SavePlayerString(playerid, query, "AdminCode", PlayerInfo[playerid][pAdminCode]);
+    SavePlayerInteger(playerid, query, "AdminPower", PlayerInfo[playerid][pAdminPower]);
 
     SavePlayerFloat(playerid, query, "PlayerPosX", pos[0]);
     SavePlayerFloat(playerid, query, "PlayerPosY", pos[1]);
@@ -101,6 +102,7 @@ stock LoadAccount(playerid)
     cache_get_value_name_int(0, "Interior", PlayerInfo[playerid][pInterior]);
     cache_get_value_name_int(0, "Admin", PlayerInfo[playerid][pAdmin]);
     cache_get_value_name(0, "AdminCode", PlayerInfo[playerid][pAdminCode]);
+    cache_get_value_name_int(0, "AdminPower", PlayerInfo[playerid][pAdminPower]);
 
     cache_get_value_name_float(0, "PlayerPosX", PlayerInfo[playerid][pPosX]);
     cache_get_value_name_float(0, "PlayerPosY", PlayerInfo[playerid][pPosY]);

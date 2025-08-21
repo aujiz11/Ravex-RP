@@ -35,8 +35,8 @@
 #include "modules/config/plugins.inc"
 
 #include "modules/core/main.inc"
-#include "modules/dynamic/main.inc"
 #include "modules/player/main.inc"
+#include "modules/dynamic/main.inc"
 
 public OnGameModeInit()
 {
